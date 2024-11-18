@@ -1,3 +1,4 @@
+using Backend.Core.Domain.Enums;
 using Backend.Core.Domain.ValueObjects;
 
 namespace Backend.Core.Domain.Entities;
@@ -62,4 +63,6 @@ public class User : BaseEntity
             _password = value;
         }
     }
+
+    public Role Role { get; set; } = Role.User;
 }

@@ -24,26 +24,28 @@ public class UserController(
     private readonly GetAllUsersHandler _getAllUsersHandler = getAllUsersHandler;
     private readonly GetUserHandler _getUserHandler = getUserHandler;
 
+    [Authorize(Policy = "Admin")]
     [HttpPost]
     public async Task<IResult> Create([FromBody] CreateUserRequest request, CancellationToken cancellationToken)
-        => await _createUserHandler.Handle(request, cancellationToken);
+                => await _createUserHandler.Handle(request, cancellationToken);
 
-    [Authorize]
+    [Authorize(Policy = "Admin")]
     [HttpPut("{id:int}")]
     public async Task<IResult> Update(int id, [FromBody] UpdateUserRequest request, CancellationToken cancellationToken)
         => await _updateUserHandler.Handle(id, request, cancellationToken);
 
-    [Authorize]
+    [Authorize(Policy = "Admin")]
     [HttpDelete("{id:int}")]
     public async Task<IResult> Delete(int id, CancellationToken cancellationToken)
         => await _deleteUserHandler.Handle(id, cancellationToken);
 
+    [Authorize(Policy = "User")]
     [Authorize]
     [HttpGet]
     public async Task<IResult> GetAll(CancellationToken cancellationToken)
         => await _getAllUsersHandler.Handle(cancellationToken);
 
-    [Authorize]
+    [Authorize(Policy = "User")]
     [HttpGet("{id:int}")]
     public async Task<IResult> Get(int id, CancellationToken cancellationToken)
         => await _getUserHandler.Handle(id, cancellationToken);

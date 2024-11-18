@@ -17,7 +17,8 @@ public class GetUserHandler(GetUserUseCase getUserUseCase)
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email
+                Email = user.Email,
+                Role = user.Role.ToString()
             };
 
             return Results.Ok(new { success = true, data });

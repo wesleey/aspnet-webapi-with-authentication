@@ -1,5 +1,6 @@
 using Entities = Backend.Core.Domain.Entities;
 using Backend.Core.Domain.Interfaces;
+using Backend.Core.Domain.Enums;
 
 namespace Backend.Core.Application.UseCases.User.CreateUser;
 

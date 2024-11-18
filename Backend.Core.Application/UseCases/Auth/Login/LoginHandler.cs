@@ -25,6 +25,7 @@ public class LoginHandler(LoginUseCase loginUseCase)
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                Role = user.Role.ToString()
             };
 
             return Results.Ok(new { success = true, message = "User logged in successfully", token, data });

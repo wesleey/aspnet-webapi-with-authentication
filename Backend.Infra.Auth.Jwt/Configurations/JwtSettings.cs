@@ -1,4 +1,4 @@
-namespace Backend.Core.Domain.Auth;
+namespace Backend.Infra.Auth.Jwt.Configurations;
 
 public class JwtSettings
 {

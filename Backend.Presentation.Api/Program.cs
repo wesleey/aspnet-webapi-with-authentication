@@ -10,14 +10,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagger();
 
-builder.Services.ConfigureApplicationApp();
 builder.Services.ConfigurePersistenceApp(builder.Configuration);
-builder.Services.ConfigureAuthApp(builder.Configuration);
+builder.Services.ConfigureApplicationApp();
+builder.Services.ConfigureAuthApp();
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.MapControllers();
 

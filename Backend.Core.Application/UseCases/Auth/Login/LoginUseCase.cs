@@ -1,6 +1,6 @@
-using Backend.Core.Domain.Auth.Interfaces;
 using Entities = Backend.Core.Domain.Entities;
 using Backend.Core.Domain.Interfaces;
+using Backend.Infra.Auth.Jwt.Interfaces;
 
 namespace Backend.Core.Application.UseCases.Auth.Login;
 
@@ -17,7 +17,7 @@ public class LoginUseCase(IUserRepository repository, IJwtTokenGenerator jwtToke
         if (user.Password != password)
             throw new ArgumentException("Invalid password");
 
-        var token = _jwtTokenGenerator.Generate(user.Id, user.Email);
+        var token = _jwtTokenGenerator.Generate(user.Id, user.Email, user.Role);
 
         return (token, user);
     }
